@@ -1,30 +1,27 @@
-class InputField {
-    value; 
+function InputField() {
+    this.input = document.querySelector('#mycustomid');
+    this.value = this.input.value;
+    return this.input.value; 
+}
 
-    constructor(input) {
-        this.value = document.querySelector(input); 
+InputField.prototype.setValue = function (value) {
+    this.input.value = value;
+    this.value = value;
+};
+
+InputField.prototype.isEmpty = function () {
+    if (this.input.value === '' || null) {
+        return true; 
+    } else {
+        return false; 
     }
+}
 
-    isEmpty() {
-        if (this.value.value === '' || null) {
-            return true; 
-        } else {
-            return false; 
-        }
-    }
-
-    setValue(value) {
-        this.value.value = value;
-    }
-
-    isPhone() {
-        const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-
-        if(this.value.value.match(phoneRegex)) {
-            return true;
-        } else
-        {
-            return false;
-        }
+InputField.prototype.isPhone = function () {
+    const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    if(this.input.value.match(phoneRegex)) {
+        return true;
+    } else {
+        return false;
     }
 }
